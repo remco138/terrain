@@ -1,0 +1,507 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{925B12BE-CAA7-4785-89F0-59FC49694E0B}</ProjectGuid>
+    <RootNamespace>src</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(ProjectDir)libs\glew-1.9.0\include;$(ProjectDir)libs\sfml\include;$(ProjectDir)libs\sfml\src;</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="Heightmap.cpp" />
+    <ClCompile Include="Input.cpp" />
+    <ClCompile Include="libs\glew-1.9.0\auto\src\glewinfo_gl.c" />
+    <ClCompile Include="libs\glew-1.9.0\auto\src\glewinfo_glx.c" />
+    <ClCompile Include="libs\glew-1.9.0\auto\src\glewinfo_head.c" />
+    <ClCompile Include="libs\glew-1.9.0\auto\src\glewinfo_tail.c" />
+    <ClCompile Include="libs\glew-1.9.0\auto\src\glewinfo_wgl.c" />
+    <ClCompile Include="libs\glew-1.9.0\auto\src\glew_head.c" />
+    <ClCompile Include="libs\glew-1.9.0\auto\src\glew_init_gl.c" />
+    <ClCompile Include="libs\glew-1.9.0\auto\src\glew_init_glx.c" />
+    <ClCompile Include="libs\glew-1.9.0\auto\src\glew_init_tail.c" />
+    <ClCompile Include="libs\glew-1.9.0\auto\src\glew_init_wgl.c" />
+    <ClCompile Include="libs\glew-1.9.0\auto\src\glew_str_glx.c" />
+    <ClCompile Include="libs\glew-1.9.0\auto\src\glew_str_head.c" />
+    <ClCompile Include="libs\glew-1.9.0\auto\src\glew_str_tail.c" />
+    <ClCompile Include="libs\glew-1.9.0\auto\src\glew_str_wgl.c" />
+    <ClCompile Include="libs\glew-1.9.0\auto\src\glew_utils.c" />
+    <ClCompile Include="libs\glew-1.9.0\src\glew.c" />
+    <ClCompile Include="libs\glew-1.9.0\src\glewinfo.c" />
+    <ClCompile Include="libs\glew-1.9.0\src\visualinfo.c" />
+    <ClCompile Include="libs\sfml\examples\ftp\Ftp.cpp" />
+    <ClCompile Include="libs\sfml\examples\opengl\OpenGL.cpp" />
+    <ClCompile Include="libs\sfml\examples\pong\Pong.cpp" />
+    <ClCompile Include="libs\sfml\examples\shader\Shader.cpp" />
+    <ClCompile Include="libs\sfml\examples\sockets\Sockets.cpp" />
+    <ClCompile Include="libs\sfml\examples\sockets\TCP.cpp" />
+    <ClCompile Include="libs\sfml\examples\sockets\UDP.cpp" />
+    <ClCompile Include="libs\sfml\examples\sound\Sound.cpp" />
+    <ClCompile Include="libs\sfml\examples\sound_capture\SoundCapture.cpp" />
+    <ClCompile Include="libs\sfml\examples\voip\Client.cpp" />
+    <ClCompile Include="libs\sfml\examples\voip\Server.cpp" />
+    <ClCompile Include="libs\sfml\examples\voip\VoIP.cpp" />
+    <ClCompile Include="libs\sfml\examples\win32\Win32.cpp" />
+    <ClCompile Include="libs\sfml\examples\window\Window.cpp" />
+    <ClCompile Include="libs\sfml\examples\X11\X11.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Audio\ALCheck.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Audio\AudioDevice.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Audio\Listener.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Audio\Music.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Audio\Sound.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Audio\SoundBuffer.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Audio\SoundBufferRecorder.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Audio\SoundFile.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Audio\SoundRecorder.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Audio\SoundSource.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Audio\SoundStream.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Graphics\CircleShape.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Graphics\Color.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Graphics\ConvexShape.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Graphics\Font.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Graphics\GLCheck.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Graphics\Image.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Graphics\ImageLoader.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Graphics\RectangleShape.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Graphics\RenderStates.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Graphics\RenderTarget.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Graphics\RenderTexture.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Graphics\RenderTextureImpl.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Graphics\RenderTextureImplDefault.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Graphics\RenderTextureImplFBO.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Graphics\RenderWindow.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Graphics\Shader.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Graphics\Shape.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Graphics\Sprite.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Graphics\Text.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Graphics\Texture.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Graphics\TextureSaver.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Graphics\Transform.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Graphics\Transformable.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Graphics\Vertex.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Graphics\VertexArray.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Graphics\View.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Main\SFML_Main.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Network\Ftp.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Network\Http.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Network\IpAddress.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Network\Packet.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Network\Socket.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Network\SocketSelector.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Network\TcpListener.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Network\TcpSocket.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Network\UdpSocket.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Network\Unix\SocketImpl.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Network\Win32\SocketImpl.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\System\Clock.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\System\Err.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\System\Lock.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\System\Mutex.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\System\Sleep.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\System\String.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\System\Thread.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\System\ThreadLocal.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\System\Time.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\System\Unix\ClockImpl.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\System\Unix\MutexImpl.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\System\Unix\SleepImpl.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\System\Unix\ThreadImpl.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\System\Unix\ThreadLocalImpl.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\System\Win32\ClockImpl.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\System\Win32\MutexImpl.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\System\Win32\SleepImpl.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\System\Win32\ThreadImpl.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\System\Win32\ThreadLocalImpl.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Window\Context.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Window\GlContext.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Window\GlResource.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Window\Joystick.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Window\JoystickManager.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Window\Keyboard.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Window\Linux\Display.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Window\Linux\GlxContext.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Window\Linux\InputImpl.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Window\Linux\JoystickImpl.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Window\Linux\VideoModeImpl.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Window\Linux\WindowImplX11.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Window\Mouse.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Window\OSX\cg_sf_conversion.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Window\OSX\HIDJoystickManager.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Window\OSX\JoystickImpl.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Window\OSX\VideoModeImpl.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Window\VideoMode.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Window\Win32\InputImpl.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Window\Win32\JoystickImpl.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Window\Win32\VideoModeImpl.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Window\Win32\WglContext.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Window\Win32\WindowImplWin32.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Window\Window.cpp" />
+    <ClCompile Include="libs\sfml\src\SFML\Window\WindowImpl.cpp" />
+    <ClCompile Include="libs\sfml\tools\xcode\templates\SFML\SFML App.xctemplate\main.cpp" />
+    <ClCompile Include="libs\sfml\tools\xcode\templates\SFML\SFML CLT.xctemplate\main.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="QuadTree.cpp" />
+    <ClCompile Include="ShaderProgram.cpp" />
+    <ClCompile Include="shapes\cube.cpp" />
+    <ClCompile Include="shapes\figure3D.cpp" />
+    <ClCompile Include="shapes\math.cpp" />
+    <ClCompile Include="shapes\sphere.cpp" />
+    <ClCompile Include="shapes\vec.cpp" />
+    <ClCompile Include="VBO.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="camera.h" />
+    <ClInclude Include="Engine.h" />
+    <ClInclude Include="Heightmap.h" />
+    <ClInclude Include="Input.h" />
+    <ClInclude Include="libs\glew-1.9.0\auto\src\glew_head.h" />
+    <ClInclude Include="libs\glew-1.9.0\auto\src\glew_license.h" />
+    <ClInclude Include="libs\glew-1.9.0\auto\src\glew_tail.h" />
+    <ClInclude Include="libs\glew-1.9.0\auto\src\glew_utils.h" />
+    <ClInclude Include="libs\glew-1.9.0\auto\src\glxew_head.h" />
+    <ClInclude Include="libs\glew-1.9.0\auto\src\glxew_mid.h" />
+    <ClInclude Include="libs\glew-1.9.0\auto\src\glxew_tail.h" />
+    <ClInclude Include="libs\glew-1.9.0\auto\src\khronos_license.h" />
+    <ClInclude Include="libs\glew-1.9.0\auto\src\mesa_license.h" />
+    <ClInclude Include="libs\glew-1.9.0\auto\src\wglew_head.h" />
+    <ClInclude Include="libs\glew-1.9.0\auto\src\wglew_mid.h" />
+    <ClInclude Include="libs\glew-1.9.0\auto\src\wglew_tail.h" />
+    <ClInclude Include="libs\glew-1.9.0\include\GL\glew.h" />
+    <ClInclude Include="libs\glew-1.9.0\include\GL\glxew.h" />
+    <ClInclude Include="libs\glew-1.9.0\include\GL\wglew.h" />
+    <ClInclude Include="libs\sfml\doc\mainpage.hpp" />
+    <ClInclude Include="libs\sfml\examples\cocoa\CocoaAppDelegate.h" />
+    <ClInclude Include="libs\sfml\examples\cocoa\NSString+stdstring.h" />
+    <ClInclude Include="libs\sfml\examples\shader\Effect.hpp" />
+    <ClInclude Include="libs\sfml\extlibs\headers\AL\al.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\AL\alc.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\AL\alext.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\GL\glew.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\GL\glxew.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\GL\wglew.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\jpeg\jconfig.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\jpeg\jerror.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\jpeg\jmorecfg.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\jpeg\jpeglib.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\config\ftconfig.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\config\ftheader.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\config\ftmodule.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\config\ftoption.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\config\ftstdlib.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\freetype.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\ftadvanc.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\ftautoh.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\ftbbox.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\ftbdf.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\ftbitmap.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\ftbzip2.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\ftcache.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\ftchapters.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\ftcid.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\fterrdef.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\fterrors.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\ftgasp.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\ftglyph.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\ftgxval.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\ftgzip.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\ftimage.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\ftincrem.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\ftlcdfil.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\ftlist.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\ftlzw.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\ftmac.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\ftmm.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\ftmodapi.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\ftmoderr.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\ftotval.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\ftoutln.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\ftpfr.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\ftrender.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\ftsizes.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\ftsnames.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\ftstroke.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\ftsynth.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\ftsystem.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\fttrigon.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\fttypes.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\ftwinfnt.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\ftxf86.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\t1tables.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\ttnameid.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\tttables.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\tttags.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\freetype2\freetype\ttunpat.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\osx\ft2build.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\windows\freetype\config\ftconfig.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\windows\freetype\config\ftheader.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\windows\freetype\config\ftmodule.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\windows\freetype\config\ftoption.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\windows\freetype\config\ftstdlib.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\windows\freetype\freetype.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\windows\freetype\ftbitmap.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\windows\freetype\fterrdef.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\windows\freetype\fterrors.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\windows\freetype\ftglyph.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\windows\freetype\ftimage.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\windows\freetype\ftmoderr.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\windows\freetype\ftoutln.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\windows\freetype\ftsystem.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\windows\freetype\fttypes.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\windows\freetype\internal\internal.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libfreetype\windows\ft2build.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libsndfile\osx\sndfile.h" />
+    <ClInclude Include="libs\sfml\extlibs\headers\libsndfile\windows\sndfile.h" />
+    <ClInclude Include="libs\sfml\include\SFML\Audio.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Audio\Export.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Audio\Listener.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Audio\Music.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Audio\Sound.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Audio\SoundBuffer.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Audio\SoundBufferRecorder.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Audio\SoundRecorder.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Audio\SoundSource.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Audio\SoundStream.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Config.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Graphics.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Graphics\BlendMode.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Graphics\CircleShape.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Graphics\Color.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Graphics\ConvexShape.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Graphics\Drawable.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Graphics\Export.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Graphics\Font.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Graphics\Glyph.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Graphics\Image.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Graphics\PrimitiveType.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Graphics\Rect.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Graphics\RectangleShape.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Graphics\RenderStates.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Graphics\RenderTarget.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Graphics\RenderTexture.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Graphics\RenderWindow.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Graphics\Shader.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Graphics\Shape.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Graphics\Sprite.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Graphics\Text.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Graphics\Texture.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Graphics\Transform.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Graphics\Transformable.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Graphics\Vertex.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Graphics\VertexArray.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Graphics\View.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Network.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Network\Export.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Network\Ftp.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Network\Http.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Network\IpAddress.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Network\Packet.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Network\Socket.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Network\SocketHandle.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Network\SocketSelector.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Network\TcpListener.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Network\TcpSocket.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Network\UdpSocket.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\OpenGL.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\System.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\System\Clock.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\System\Err.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\System\Export.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\System\InputStream.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\System\Lock.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\System\Mutex.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\System\NonCopyable.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\System\Sleep.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\System\String.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\System\Thread.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\System\ThreadLocal.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\System\ThreadLocalPtr.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\System\Time.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\System\Utf.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\System\Vector2.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\System\Vector3.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Window.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Window\Context.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Window\ContextSettings.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Window\Event.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Window\Export.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Window\GlResource.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Window\Joystick.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Window\Keyboard.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Window\Mouse.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Window\VideoMode.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Window\Window.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Window\WindowHandle.hpp" />
+    <ClInclude Include="libs\sfml\include\SFML\Window\WindowStyle.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\Audio\ALCheck.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\Audio\AudioDevice.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\Audio\SoundFile.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\Graphics\GLCheck.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\Graphics\ImageLoader.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\Graphics\RenderTextureImpl.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\Graphics\RenderTextureImplDefault.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\Graphics\RenderTextureImplFBO.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\Graphics\stb_image\stb_image.h" />
+    <ClInclude Include="libs\sfml\src\SFML\Graphics\stb_image\stb_image_write.h" />
+    <ClInclude Include="libs\sfml\src\SFML\Graphics\TextureSaver.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\Network\SocketImpl.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\Network\Unix\SocketImpl.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\Network\Win32\SocketImpl.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\System\Unix\ClockImpl.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\System\Unix\MutexImpl.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\System\Unix\SleepImpl.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\System\Unix\ThreadImpl.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\System\Unix\ThreadLocalImpl.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\System\Win32\ClockImpl.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\System\Win32\MutexImpl.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\System\Win32\SleepImpl.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\System\Win32\ThreadImpl.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\System\Win32\ThreadLocalImpl.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\Window\GlContext.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\Window\glext\glext.h" />
+    <ClInclude Include="libs\sfml\src\SFML\Window\glext\glxext.h" />
+    <ClInclude Include="libs\sfml\src\SFML\Window\glext\wglext.h" />
+    <ClInclude Include="libs\sfml\src\SFML\Window\InputImpl.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\Window\JoystickImpl.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\Window\JoystickManager.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\Window\Linux\Display.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\Window\Linux\GlxContext.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\Window\Linux\InputImpl.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\Window\Linux\JoystickImpl.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\Window\Linux\WindowImplX11.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\Window\OSX\AutoreleasePoolWrapper.h" />
+    <ClInclude Include="libs\sfml\src\SFML\Window\OSX\cg_sf_conversion.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\Window\OSX\cpp_objc_conversion.h" />
+    <ClInclude Include="libs\sfml\src\SFML\Window\OSX\HIDInputManager.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\Window\OSX\HIDJoystickManager.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\Window\OSX\InputImpl.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\Window\OSX\JoystickImpl.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\Window\OSX\SFApplication.h" />
+    <ClInclude Include="libs\sfml\src\SFML\Window\OSX\SFContext.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\Window\OSX\SFOpenGLView.h" />
+    <ClInclude Include="libs\sfml\src\SFML\Window\OSX\SFViewController.h" />
+    <ClInclude Include="libs\sfml\src\SFML\Window\OSX\SFWindow.h" />
+    <ClInclude Include="libs\sfml\src\SFML\Window\OSX\SFWindowController.h" />
+    <ClInclude Include="libs\sfml\src\SFML\Window\OSX\WindowImplCocoa.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\Window\OSX\WindowImplDelegateProtocol.h" />
+    <ClInclude Include="libs\sfml\src\SFML\Window\VideoModeImpl.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\Window\Win32\InputImpl.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\Window\Win32\JoystickImpl.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\Window\Win32\WglContext.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\Window\Win32\WindowImplWin32.hpp" />
+    <ClInclude Include="libs\sfml\src\SFML\Window\WindowImpl.hpp" />
+    <ClInclude Include="libs\sfml\tools\xcode\templates\SFML\SFML App.xctemplate\ResourcePath.hpp" />
+    <ClInclude Include="QuadTree.h" />
+    <ClInclude Include="ShaderProgram.h" />
+    <ClInclude Include="shapes\cube.h" />
+    <ClInclude Include="shapes\figure3D.h" />
+    <ClInclude Include="shapes\math.h" />
+    <ClInclude Include="shapes\plane.h" />
+    <ClInclude Include="shapes\player.h" />
+    <ClInclude Include="shapes\sphere.h" />
+    <ClInclude Include="shapes\vec.h" />
+    <ClInclude Include="VBO.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="libs\glew-1.9.0\auto\doc\advanced.html" />
+    <None Include="libs\glew-1.9.0\auto\doc\basic.html" />
+    <None Include="libs\glew-1.9.0\auto\doc\build.html" />
+    <None Include="libs\glew-1.9.0\auto\doc\credits.html" />
+    <None Include="libs\glew-1.9.0\auto\doc\index.html" />
+    <None Include="libs\glew-1.9.0\auto\doc\install.html" />
+    <None Include="libs\glew-1.9.0\auto\doc\log.html" />
+    <None Include="libs\glew-1.9.0\auto\src\footer.html" />
+    <None Include="libs\glew-1.9.0\auto\src\header.html" />
+    <None Include="libs\glew-1.9.0\doc\advanced.html" />
+    <None Include="libs\glew-1.9.0\doc\basic.html" />
+    <None Include="libs\glew-1.9.0\doc\build.html" />
+    <None Include="libs\glew-1.9.0\doc\credits.html" />
+    <None Include="libs\glew-1.9.0\doc\glew.html" />
+    <None Include="libs\glew-1.9.0\doc\glxew.html" />
+    <None Include="libs\glew-1.9.0\doc\index.html" />
+    <None Include="libs\glew-1.9.0\doc\install.html" />
+    <None Include="libs\glew-1.9.0\doc\log.html" />
+    <None Include="libs\glew-1.9.0\doc\wglew.html" />
+    <None Include="libs\sfml\doc\footer.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="libs\sfml\doc\header.htm">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="libs\sfml\include\SFML\Graphics\Rect.inl" />
+    <None Include="libs\sfml\include\SFML\System\Thread.inl" />
+    <None Include="libs\sfml\include\SFML\System\ThreadLocalPtr.inl" />
+    <None Include="libs\sfml\include\SFML\System\Utf.inl" />
+    <None Include="libs\sfml\include\SFML\System\Vector2.inl" />
+    <None Include="libs\sfml\include\SFML\System\Vector3.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="libs\glew-1.9.0\auto\src\glew.rc" />
+    <ResourceCompile Include="libs\glew-1.9.0\auto\src\glewinfo.rc" />
+    <ResourceCompile Include="libs\glew-1.9.0\auto\src\visualinfo.rc" />
+    <ResourceCompile Include="libs\glew-1.9.0\build\glew.rc" />
+    <ResourceCompile Include="libs\glew-1.9.0\build\glewinfo.rc" />
+    <ResourceCompile Include="libs\glew-1.9.0\build\visualinfo.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

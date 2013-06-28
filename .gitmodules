@@ -1,0 +1,6 @@
+[submodule "src/libs/sfml"]
+	path = src/libs/sfml
+	url = https://github.com/LaurentGomila/SFML.git
+[submodule "src/libs/glew"]
+	path = src/libs/glew
+	url = git://git.code.sf.net/p/glew/code

@@ -1,0 +1,8 @@
+project(glew)
+
+set (${PROJECT_NAME}_headers include)
+set (${PROJECT_NAME}_sources src)
+
+add_library (${PROJECT_NAME} SHARED ${${PROJECT_NAME}_headers} ${${PROJECT_NAME}_headers})
+
+target_link_libraries(${PROJECT_NAME} glew32.lib)
