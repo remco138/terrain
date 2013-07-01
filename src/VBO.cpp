@@ -1,4 +1,4 @@
-#include <gl/glew.h>
+#include <GL/glew.h>
 #include <SFML/OpenGL.hpp>
 #include <fstream>
 

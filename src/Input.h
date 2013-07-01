@@ -49,8 +49,8 @@ class Input
 public:
 	vec2i getLocation();
 
-	void bindKey(void (*callback)(), sf::Keyboard::Key key);
-	void Input::hookMouse(void (*callback)(vec2i), hookType type);
+	//void bindKey(void (*callback)(), sf::Keyboard::Key key);
+	//void Input::hookMouse(void (*callback)(vec2i), hookType type);
 	//more binding options?
 
 	bool getKeyStatus(sf::Keyboard::Key key);

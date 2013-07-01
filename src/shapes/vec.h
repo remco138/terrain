@@ -1,18 +1,84 @@
 #ifndef VEC_H
 #define VEC_H
 
-#include <SFML/System/Vector2.hpp>
-//#include <SFML/System/Vector3.hpp>
-#include "math.h"
+#include <cmath>
+#include <SFML/System/Vector2.hpp> 
+#include <SFML/System/Vector3.hpp> 
 
 
+template<class T>
+class vec2
+{
+public:
+	T x, y;
 
+	vec2()					: x(0), y(0) {}
+	vec2(const T x, const T y)		: x(x), y(y) {}
+	vec2(const vec2<T>& arg)			: x(arg.x), y(arg.y) {}
+	vec2(const sf::Vector2<T>& arg): x(arg.x), y(arg.y) {} 
+
+	double length()			{ return std::sqrt(static_cast<float>(x*x + y*y)); }
+
+	vec2<T>& operator=(const vec2<T>& arg)	{ x = arg.x; y = arg.y; return *this; }
+
+	vec2<T> operator+(const vec2<T>& arg)	const { return vec2<T>(x + arg.x, y + arg.y); }
+	vec2<T> operator-(const vec2<T>& arg)	const { return vec2<T>(x - arg.x, y - arg.y); }
+	vec2<T> operator*(const vec2<T>& arg)	const { return vec2<T>(x * arg.x, y * arg.y); }
+	vec2<T> operator/(const vec2<T>& arg)	const { return vec2<T>(x / arg.x, y / arg.y); }	
+
+	vec2<T> operator*(const float& arg)		const { return vec2<T>(x / arg, y / arg); }
+	vec2<T> operator/(const float& arg)		const { return vec2<T>(x / arg, y / arg); }
+
+	vec2<T>& operator+=(const vec2<T>& arg)	{ x += arg.x; y += arg.y; return *this; }
+	vec2<T>& operator-=(const vec2<T>& arg)	{ x -= arg.x; y -= arg.y; return *this; }
+	vec2<T>& operator*=(const vec2<T>& arg)	{ x *= arg.x; y *= arg.y; return *this; }
+	vec2<T>& operator/=(const vec2<T>& arg)	{ x /= arg.x; y /= arg.y; return *this; }
+};
+
+template<class T> 
+class vec3
+{
+public:
+	T x, y, z;
+
+	vec3()					: x(0), y(0), z(0) {}
+	vec3(const T x, const T y, const T z)		: x(x), y(y), z(z) {}
+	vec3(const vec3<T>& arg)			: x(arg.x), y(arg.y), z(arg.z) {}
+ vec3(const sf::Vector3<T>& arg): x(arg.x), y(arg.y), z(arg.z) {} 
+
+	double length()			{ return std::sqrt(static_cast<float>(x*x + y*y + z*z)); } 
+
+	vec3<T>& operator=(const vec3<T>& arg)	{ x = arg.x; y = arg.y; z = arg.z; return *this; }
+
+	vec3<T> operator+(const vec3<T>& arg)	const { return vec3<T>(x + arg.x, y + arg.y, z + arg.z); }
+	vec3<T> operator-(const vec3<T>& arg)	const { return vec3<T>(x - arg.x, y - arg.y, z - arg.z); }
+	vec3<T> operator*(const vec3<T>& arg)	const { return vec3<T>(x * arg.x, y * arg.y, z * arg.z); }
+	vec3<T> operator/(const vec3<T>& arg)	const { return vec3<T>(x / arg.x, y / arg.y, z / arg.z); }	
+
+	vec3<T> operator*(const float& arg)		const { return vec3<T>(x / arg, y / arg, z / arg); }
+	vec3<T> operator/(const float& arg)		const { return vec3<T>(x / arg, y / arg, z / arg); }
+
+	vec3<T>& operator+=(const vec3<T>& arg)	{ x += arg.x; y += arg.y; z += arg.z; return *this; }
+	vec3<T>& operator-=(const vec3<T>& arg)	{ x -= arg.x; y -= arg.y; z -= arg.z; return *this; }
+	vec3<T>& operator*=(const vec3<T>& arg)	{ x *= arg.x; y *= arg.y; z *= arg.z; return *this; }
+	vec3<T>& operator/=(const vec3<T>& arg)	{ x /= arg.x; y /= arg.y; z /= arg.z; return *this; }
+};
+
+using vec2i = vec2<int>;
+using vec2u = vec2<unsigned int>;
+using vec2f = vec2<float>;
+using vec3i = vec3<int>;
+using vec3u = vec3<unsigned int>;
+using vec3f = vec3<float>;
+
+
+/*
 class vec2i;
 class vec2u;
 class vec2f;
 class vec3i;
 class vec3u;
-class vec3f;
+class vec3f
 
 
 template<class T> 
@@ -250,5 +316,5 @@ public:
 	vec2f& operator*=(const vec2f& arg);
 	vec2f& operator/=(const vec2f& arg);
 };
-
+*/
 #endif

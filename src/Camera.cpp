@@ -1,4 +1,4 @@
-#include "heightMap.h"
+#include "Heightmap.h"
 #include "camera.h"
 
 Camera::Camera()

@@ -1,4 +1,4 @@
-#include "HeightMap.h"
+#include "Heightmap.h"
 #include <math.h>
 #include <SFML/Graphics/Image.hpp>
 #include "ShaderProgram.h"
@@ -11,11 +11,6 @@ bool HeightMap::init()
 VBO HeightMap::create(const char* file){
 	sf::Image heightMap;
 	int test = heightMap.loadFromFile("heightMap.bmp");
-	if(test == false)
-	{
-		printf("%s", "error");
-	}
-	int b = heightMap.getSize().x;
 	size.x = heightMap.getSize().x;
 	size.y = heightMap.getSize().y;
 

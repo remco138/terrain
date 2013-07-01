@@ -38,7 +38,7 @@ void Input::init(sf::Window* window)
 	this->window = window;
 	mouseLocation = vec2i(sf::Mouse::getPosition());
 }
-
+/*
 void Input::bindKey(void (*callback)(), sf::Keyboard::Key key)
 {
 	KeyBinding bind;
@@ -56,7 +56,7 @@ void Input::hookMouse(void (*callback)(vec2i), hookType type)
 
 	mouseHooks.push_back(hook);
 }
-
+*/
 void Input::update()
 {
 	//check if the user has moved the mouse, if so, call all functions with new coordinates

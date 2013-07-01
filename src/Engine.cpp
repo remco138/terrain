@@ -1,4 +1,4 @@
-#include "engine.h"
+#include "Engine.h"
 #include "Heightmap.h"
 #include <iostream>
 
@@ -9,7 +9,7 @@ int lastx = 0, lasty = 0;
 
 void Engine::onResize()
 {
-	vec2u windowSize = vec2u(window.getSize());
+	vec2u windowSize = window.getSize();
 
 	glViewport (0, 0, windowSize.x, windowSize.y);  
 	glMatrixMode (GL_PROJECTION);   

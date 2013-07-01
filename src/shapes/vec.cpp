@@ -1,5 +1,5 @@
 #include "vec.h"
-
+/*
 //--------------------------vec3i
 	vec3i::vec3i()							: x(0), y(0), z(0) {}
 	vec3i::vec3i(float x, float y, float z)	: x(x), y(y), z(z) {}
@@ -173,3 +173,4 @@
 	vec2f& vec2f::operator-=(const vec2f& arg)	{ x -= arg.x; y -= arg.y; return *this; }
 	vec2f& vec2f::operator*=(const vec2f& arg)	{ x *= arg.x; y *= arg.y; return *this; }
 	vec2f& vec2f::operator/=(const vec2f& arg)	{ x /= arg.x; y /= arg.y; return *this; }
+*/
