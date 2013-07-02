@@ -36,13 +36,13 @@ bool ShaderProgram::create(const char* files)
 	shaderFileName = files;
 	std::ifstream file;
 
-	file.open(shaderFileName + ".vert", std::ios::in);
+	file.open((shaderFileName + ".vert").c_str(), std::ios::in);
 	//file.read(vertShaderContent, file.tellg());
 	vertShaderContent.assign((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
 	file.close();
 	vertShaderContent += '\0';
 
-	file.open(shaderFileName + ".frag", std::ios::in);
+	file.open((shaderFileName + ".frag").c_str(), std::ios::in);
 	fragShaderContent.assign((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
 	file.close();
 	fragShaderContent += '\0';

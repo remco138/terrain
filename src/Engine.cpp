@@ -25,7 +25,7 @@ void Engine::init()//enable depth test
 	onResize();
 	glEnable(GL_DEPTH_TEST);
 	glDepthMask(GL_TRUE);
-	heightMap.create("heightMap.bmp");
+	heightMap.create("data/heightmap.bmp");
 	input.init(&window);
 //	input.hookMouse(&(camera.update), hookType.difference);
 

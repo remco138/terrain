@@ -10,7 +10,7 @@ bool HeightMap::init()
 
 VBO HeightMap::create(const char* file){
 	sf::Image heightMap;
-	int test = heightMap.loadFromFile("heightMap.bmp");
+	int test = heightMap.loadFromFile(file);
 	size.x = heightMap.getSize().x;
 	size.y = heightMap.getSize().y;
 
