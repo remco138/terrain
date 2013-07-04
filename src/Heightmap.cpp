@@ -30,14 +30,11 @@ VBO HeightMap::create(const char* file){
 	}
 
 	init(); //empty for now
-
 	vbo.create(vertexData, vertexCount);
-
-	ShaderProgram shader("shader");
+	ShaderProgram shader;//"shader");
 
 	vec3f loc(0, 0, 0);
-	vec3f size(size.x, 200, size.y);
-	tree = new QuadTree(vbo,loc, size, 0, shader); 
+	tree = new QuadTree(vbo, loc, size.addY(255), 0, shader); 
 	return vbo;
 }
 
@@ -51,6 +48,8 @@ vec3f HeightMap::getNearestVertex(const vec3f location) const
 	if((location.x < 0 || location.x >= size.x) ||
 		location.y < 0							||
 		location.z < 0 || location.z >= size.y)
+
+
 	{
 		return location;
 	}

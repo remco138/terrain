@@ -1,27 +1,27 @@
 #include "Heightmap.h"
 #include "camera.h"
 
-Camera::Camera()
+Camera::Camera() : Cube()
 {
 	sensitivity = 1;
 	speed = 1;
 }
-
+/*
 vec3f Camera::getLocation()
 {
-	return location;
+	return vec3f(x, y, z);
 }
 
-vec2f Camera::getAngle()
+vec3f Camera::getAngle()
 {
-	return angle;
-}
+	return rotation;
+}*/
 
 void Camera::correctHeight(const HeightMap& hm)
 {
 	if(isKeyPressed(sf::Keyboard::C))
 	{
-		location = hm.getNearestVertex(location);//+ vec3f(0, 15, 0);
+		setCenter(hm.getNearestVertex(getCenter()));
 	}
 }
 
@@ -56,8 +56,8 @@ void Camera::update()
 
 	//printf("%f, %f, %f\n", location.x, location.y, location.z);
 	vec2i mouseDifference = getMouseDifference();
-	angle.x += mouseDifference.y * sensitivity; //lack of operators in my vector classes, this needs cleaning up
-	angle.y += mouseDifference.x * sensitivity;
+	rotation.x += mouseDifference.y * sensitivity; //lack of operators in my vector classes, this needs cleaning up
+	rotation.y += mouseDifference.x * sensitivity;
 
 
 	vec3f wishDir;
@@ -75,32 +75,32 @@ void Camera::update()
 	}
 	if(isKeyPressed(sf::Keyboard::W))
 	{
-		float xrad = angle.x / 180 * 3.141592654f;
-		float yrad = angle.y / 180 * 3.141592654f;
+		float xrad = rotation.x / 180 * 3.141592654f;
+		float yrad = rotation.y / 180 * 3.141592654f;
 		wishDir.x += sin(yrad) * speed;
 		wishDir.z -= cos(yrad) * speed;
 		wishDir.y -= sin(xrad) * speed;
 	}
 	if(isKeyPressed(sf::Keyboard::S))
 	{
-		float xrad = angle.x / 180 * 3.141592654f;
-		float yrad = angle.y / 180 * 3.141592654f;
+		float xrad = rotation.x / 180 * 3.141592654f;
+		float yrad = rotation.y / 180 * 3.141592654f;
 		wishDir.x -= sin(yrad) * speed;
 		wishDir.z += cos(yrad) * speed;
 		wishDir.y += sin(xrad) * speed;
 	}
 	if(isKeyPressed(sf::Keyboard::A))
 	{
-		float xrad = angle.x / 180 * 3.141592654f;
-		float yrad = angle.y / 180 * 3.141592654f;
+		float xrad = rotation.x / 180 * 3.141592654f;
+		float yrad = rotation.y / 180 * 3.141592654f;
 		wishDir.x -= cos(yrad) * speed;
 		wishDir.z -= sin(yrad) * speed;
 
 	}
 	if(isKeyPressed(sf::Keyboard::D))
 	{
-		float xrad = angle.x / 180 * 3.141592654f;
-		float yrad = angle.y / 180 * 3.141592654f;
+		float xrad = rotation.x / 180 * 3.141592654f;
+		float yrad = rotation.y / 180 * 3.141592654f;
 		wishDir.x += cos(yrad) * speed;
 		wishDir.z += sin(yrad) * speed;
 	}
@@ -128,23 +128,15 @@ void Camera::update()
 	*/
 
 	//velocity = vec3f(accelSpeed, accelSpeed, accelSpeed) * wishDir;
-	location += wishDir;
+	setCenter(getCenter() + wishDir);
+
 	velocity = vec3f(0, 0, 0);
-}
-
-void Camera::setLocation(vec3f location)
-{
-	this->location = location;
-}
-
-void Camera::setAngle(vec2f angle)
-{
-	this->angle = angle;
 }
 
 void Camera::render()
 {
-	glRotatef(angle.x, 1.0, 0.0, 0.0);
-	glRotatef(angle.y, 0.0, 1.0, 0.0);
-	glTranslatef(-location.x, -location.y, -location.z);
+	glRotatef(rotation.x, 1.0, 0.0, 0.0);
+	glRotatef(rotation.y, 0.0, 1.0, 0.0);
+	glTranslatef(-x, -y, -z);
+	
 }

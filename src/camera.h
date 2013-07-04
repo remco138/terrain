@@ -5,60 +5,30 @@
 #include "Input.h"
 #include <SFML/OpenGL.hpp>
 
-/*
-class AbstractInput
-{
-};
-
-class AbstractCamera
-{
-};
-
-class AbstractPlayerController
-{
-};
-
-class Camera : public AbstractCamera
-{
-};
-
-
-class MyInput : public AbstractInput
-{
-	MyInput( MyController* ctrl ) : ctrl(ctrl) { }
-	MyController* ctrl
-};
-//------------------------------------------------------
-
-
-class InputComponent
-{
-public:
-	bindKey(const char* name, 
-};
-
-//-------------------------------------------------------
-*/
-class Camera
+class Camera : public Cube
 {
 public:
 	Camera();
 
 	void correctHeight(const HeightMap& hm);
 
-	vec3f getLocation();
-	vec2f getAngle();
+	//vec3f getLocation();
+	//vec3f getAngle();
 
-	void setLocation(vec3f location);
-	void setAngle(vec2f angle);
+	//void setLocation(vec3f location);
+	//void setAngle(vec2f angle);
 
 	void render();
 	void update();
 private:
 	float sensitivity;
 	float speed;
-	vec3f location;
-	vec2f angle;
 };
+/*
+class Spectator : 
+{
+public:
+
+}*/
 
 #endif

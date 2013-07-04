@@ -1,41 +1,36 @@
 #include "QuadTree.h"
 
 //float lodDistances[5] = { 50, 200, 400, 700, 1000 };
-float lodDistances[] = { 2200, 1500, 800, 500, 200 };
+float lodDistances[] = { 1500, 1000, 500, 200, 100 };
 int maxLodLevel = 5;
 
 vec3f QuadTree::heightmapSize = vec3f(0, 0, 0);
 
-QuadTree::QuadTree(VBO vertecis, vec3f location, vec3f size, int level, ShaderProgram shader) : boundingBox(location + size / 2, size / 2)
+QuadTree::QuadTree(VBO vertecis, vec3f location, vec3f size, int level, ShaderProgram shader) : boundingBox(location, size)
 {
 	this->level = level;
-	int t = pow(2.0f, level);
-	//printf("%f, %f, %f\n", boundingBox.getLocation().x, boundingBox.getLocation().y, boundingBox.getLocation().z);
-
 	maxLodDistance = lodDistances[level];
+	//lodDivider: Amount of vertecis that will be skipped, power of 2,
+	//meaning every level deeper we go the amount of vertecis we skip will be double. maxLodLevel - highest level = 0; 2^0 = 1
 	int lodDivider = pow(2.0f, maxLodLevel - level);
+	//These variables are needed to check whether we are at the edge of the chunk, and if so,ignore it,
+	//otherwise the edge indexes in GPU memory will point to nonexistant vertecis for some reason
+	int lastRowX = (boundingBox.getMinCorner().x + boundingBox.getSize().x == heightmapSize.x) ? lodDivider : 0;
+	int lastRowZ = (boundingBox.getMinCorner().z + boundingBox.getSize().z == heightmapSize.z) ? lodDivider : 0;	
 	int indexNum = (boundingBox.getSize().x - lodDivider) * (boundingBox.getSize().z - lodDivider) * 6 / lodDivider;
-	std::vector<unsigned int> indexData;
-	indexData.reserve(indexNum);
+	std::vector<unsigned int> indexData(indexNum);	//Reserve the memory we will use, this will optimize the code a bit
+	indexData.reserve(indexNum*2);
 
-	int lastRowX = 0;//lodDivider;
-	int lastRowZ = 0;//lodDivider;
+	//Static. HeightmapSize holds the size of the entire heightmap and is accesible by every child
+	//(fixme) Keep this in mind when for some reason creating another QuadTree object
 	if(level == 0)//root
 	{
 		this->heightmapSize = size;
 	}
-	if(boundingBox.getLocation().x + boundingBox.getSize().x == heightmapSize.x)
-	{
-		lastRowX = lodDivider;
-	}
-	if(boundingBox.getLocation().z + boundingBox.getSize().z == heightmapSize.z)
-	{
-		lastRowZ = lodDivider;
-	}
 
-	for(unsigned int x = boundingBox.getLocation().x; x < boundingBox.getLocation().x + boundingBox.getSize().x - lastRowX; x += lodDivider)
+	for(unsigned int x = boundingBox.getMinCorner().x; x < boundingBox.getMinCorner().x + boundingBox.getSize().x - lastRowX; x += lodDivider)
 	{
-		for(unsigned int z = boundingBox.getLocation().z; z < boundingBox.getLocation().z + boundingBox.getSize().z - lastRowZ; z += lodDivider)
+		for(unsigned int z = boundingBox.getMinCorner().z; z < boundingBox.getMinCorner().z + boundingBox.getSize().z - lastRowZ; z += lodDivider)
 		{
 			indexData.push_back((x * heightmapSize.z) + z);
 			indexData.push_back((x * heightmapSize.z) + z + lodDivider);
@@ -52,7 +47,7 @@ QuadTree::QuadTree(VBO vertecis, vec3f location, vec3f size, int level, ShaderPr
 	indexes.create(&indexData[0], indexData.size());
 	vao.addVbo(vertecis);
 	vao.addIBO(indexes);
-	vao.setShader(shader);
+	//vao.setShader(shader);
 
 	if(level < maxLodLevel)
 	{
@@ -89,9 +84,9 @@ QuadTree::~QuadTree()
 
 void QuadTree::render(vec3f location)
 {
-	Cube cameraBox(location, lodDistances[level]);
+	//Cube cameraBox(location, lodDistances[level]);
 	//cameraBox.render();	
-	if(!isLeaf && (boundingBox.contains(location) || boundingBox.contains(cameraBox) || cameraBox.contains(boundingBox)))//boundingBox.toSphere().intersects(range)*/)
+	if(!isLeaf && (boundingBox.getCenter() - location).length() < lodDistances[level]) //(boundingBox.contains(location) || boundingBox.contains(cameraBox) || cameraBox.contains(boundingBox)))//boundingBox.toSphere().intersects(range)*/)
 	{
 		for(int k = 0; k < 4; k++)
 		{
@@ -119,8 +114,10 @@ void QuadTree::render(vec3f location)
 		break;
 	case 5:
 		glColor3f(1, 1, 1);
+	default:
+		glColor3f(0.5, 0.5, 0.5);
 	}
-		//boundingBox.render();
+		boundingBox.render();
 
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 		vao.render();

@@ -3,17 +3,68 @@
 #include <algorithm>
 #include <SFML/OpenGL.hpp>
 
-
-
-vec3f Cube::getLocation()
+ vec3f Cube::getCenter()
 {
-  return vec3f(x, x, z);
+	return vec3f(x, y, z) + size*0.5f;
+}
+
+ vec3f Cube::getMinCorner()
+{
+	return vec3f(x, y, z);
+}
+
+ vec3f Cube::getMaxCorner()
+{
+	return vec3f(x, y, z) + size;
 }
 
 vec3f Cube::getSize()
 {
   return vec3f(size.x, size.y, size.z);
 }
+
+void Cube::setCenter(vec3f location)
+{
+	x = location.x - size.x*0.5f;
+	y = location.y - size.y*0.5f;
+	z = location.z - size.z*0.5f;
+}
+
+void Cube::setCenter(float x, float y, float z)
+{
+	this->x = x;
+	this->y = y;
+	this->z = z;
+}
+
+void Cube::setRotation(vec3f rotation)
+{
+	this->rotation.z = rotation.x;
+	this->rotation.y = rotation.y;
+	this->rotation.z = rotation.z;
+}
+
+void Cube::setRotation(float x, float y, float z)
+{
+	rotation.x = x;
+	rotation.y = y;
+	rotation.z = z;
+}
+
+void Cube::setSize(vec3f size)
+{
+	this->size.x = size.x;
+	this->size.y = size.y;
+	this->size.z = size.z;
+}
+
+void Cube::setSize(float x, float y, float z)
+{
+	size.x = x;
+	size.y = y;
+	size.z = z;
+}
+
 
 void Cube::render()
 {
@@ -61,25 +112,36 @@ void Cube::render()
 	glEnd();
 }
 
-
-Cube::Cube(vec3f location, vec3f size) : vec3f(x, y, z), size(size)
+Cube::Cube() : vec3f()
 {
-
 }
 
-Cube::Cube(vec3f location, float size) : vec3f(x, y, z), size(size, size, size)
+Cube::Cube(vec3f location, vec3f size) : vec3f(location), size(size), rotation(0, 0, 0)
 {
-  
+}
+
+Cube::Cube(vec3f location, float size) : vec3f(location), size(size, size, size), rotation(0, 0, 0)
+{
 }
 
 Cube::~Cube()
 {
 
 }
+
+Cube Cube::createMinCorner(vec3f location, vec3f size)
+{
+	return Cube(location - size*0.5f, size);
+}
+Cube Cube::createMinCorner(vec3f location, float size)
+{
+	return Cube(location - size*0.5f, size);
+}
+
 bool Cube::contains(Cube box)
 {
-  vec3f x1 = box.getLocation(), x2 = box.getLocation() + vec3f(box.size.x, 0, 0), x3 = box.getLocation() + vec3f(0, box.size.y, 0), x4 = box.getLocation() + vec3f(box.size.x, box.size.y, 0);
-  vec3f z1 = box.getLocation() + vec3f(0, 0, box.size.z), z2 = box.getLocation() + vec3f(box.size.x, 0, box.size.z), z3 = box.getLocation() + vec3f(0, box.size.y, box.size.z), z4 = box.getLocation() + vec3f(box.size.x, box.size.y, box.size.z);
+  vec3f x1 = box.getMinCorner(), x2 = box.getMinCorner() + vec3f(box.size.x, 0, 0), x3 = box.getMinCorner() + vec3f(0, box.size.y, 0), x4 = box.getMinCorner() + vec3f(box.size.x, box.size.y, 0);
+  vec3f z1 = box.getMinCorner() + vec3f(0, 0, box.size.z), z2 = box.getMinCorner() + vec3f(box.size.x, 0, box.size.z), z3 = box.getMinCorner() + vec3f(0, box.size.y, box.size.z), z4 = box.getMinCorner() + vec3f(box.size.x, box.size.y, box.size.z);
 
 	if(contains(x1) || contains(x2) || contains(x3) || contains(x4) ||
 	   contains(z1) || contains(z2) || contains(z3) || contains(z4))
@@ -105,5 +167,5 @@ bool Cube::contains(vec3f point)
 
 Sphere Cube::toSphere()
 {
-  return Sphere(getLocation(), std::max(std::max(x, y), z));
+  return Sphere(getCenter(), std::max(std::max(x, y), z));
 }

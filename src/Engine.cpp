@@ -14,7 +14,7 @@ void Engine::onResize()
 	glViewport (0, 0, windowSize.x, windowSize.y);  
 	glMatrixMode (GL_PROJECTION);   
 	glLoadIdentity ();
-	gluPerspective (65, windowSize.x / windowSize.y, 1.0, 9999);  
+	gluPerspective (95, windowSize.x / windowSize.y, 1.0, 9999);  
 	glMatrixMode (GL_MODELVIEW);
 }
 
@@ -53,7 +53,6 @@ void Engine::update()
 {
 	input.update();
 	camera.update();
-
 }
 
 void Engine::render()
@@ -65,7 +64,7 @@ void Engine::render()
 	
 	camera.correctHeight(heightMap);
 	camera.render();
-	heightMap.render(camera.getLocation()); //requires our location for LOD
+	heightMap.render(camera.getCenter()); //requires our location for LOD
 
 	window.display();
 }
