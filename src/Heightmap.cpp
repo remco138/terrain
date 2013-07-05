@@ -9,6 +9,7 @@ bool HeightMap::init()
 }
 
 VBO HeightMap::create(const char* file){
+	/*
 	sf::Image heightMap;
 	int test = heightMap.loadFromFile(file);
 	size.x = heightMap.getSize().x;
@@ -34,7 +35,10 @@ VBO HeightMap::create(const char* file){
 	ShaderProgram shader;//"shader");
 
 	vec3f loc(0, 0, 0);
-	tree = new QuadTree(vbo, loc, size.addY(255), 0, shader); 
+	tree = new Quadtree(vbo, loc, size.addY(255), 0, shader); 
+	return vbo;
+	*/
+	VBO vbo;
 	return vbo;
 }
 

@@ -28,6 +28,10 @@ void Engine::init()//enable depth test
 	heightMap.create("data/heightmap.bmp");
 	input.init(&window);
 //	input.hookMouse(&(camera.update), hookType.difference);
+	tree = new Quadtree();
+	infiniteTerrain.setStreamSource(&planeGenerator);
+	infiniteTerrain.changeTree(tree);
+	infiniteTerrain.update(camera.getCenter(), true);
 
 	sf::ContextSettings settings = window.getSettings();
 	std::cout << "OpenGL version:"<< settings.majorVersion << "." << settings.minorVersion << std::endl;
@@ -38,6 +42,7 @@ int tickRate = 33;
 void Engine::start()
 {	
 	sf::Clock clock;
+	update();
 	while(true)
 	{
 		if(clock.getElapsedTime().asMilliseconds() >= 1000 / tickRate)
@@ -53,6 +58,7 @@ void Engine::update()
 {
 	input.update();
 	camera.update();
+	infiniteTerrain.update(camera.getCenter());
 }
 
 void Engine::render()
@@ -64,7 +70,8 @@ void Engine::render()
 	
 	camera.correctHeight(heightMap);
 	camera.render();
-	heightMap.render(camera.getCenter()); //requires our location for LOD
+	infiniteTerrain.render(camera.getCenter());
+	//heightMap.render(camera.getCenter()); //requires our location for LOD
 
 	window.display();
 }
@@ -72,3 +79,8 @@ void Engine::render()
 //_______WRAPPERS
 /*
 */
+
+Engine::~Engine()
+{
+	delete tree;
+}

@@ -1,12 +1,16 @@
-#include "QuadTree.h"
+#include "Quadtree.h"
 
 //float lodDistances[5] = { 50, 200, 400, 700, 1000 };
 float lodDistances[] = { 1500, 1000, 500, 200, 100 };
 int maxLodLevel = 5;
 
-vec3f QuadTree::heightmapSize = vec3f(0, 0, 0);
+vec3f Quadtree::heightmapSize = vec3f(0, 0, 0);
 
-QuadTree::QuadTree(VBO vertecis, vec3f location, vec3f size, int level, ShaderProgram shader) : boundingBox(location, size)
+Quadtree::Quadtree() : level(0), isLeaf(true)
+{
+}
+
+Quadtree::Quadtree(VBO vertecis, vec3f location, vec3f size, int level, ShaderProgram shader, bool recur) : boundingBox(location, size)
 {
 	this->level = level;
 	maxLodDistance = lodDistances[level];
@@ -20,9 +24,10 @@ QuadTree::QuadTree(VBO vertecis, vec3f location, vec3f size, int level, ShaderPr
 	int indexNum = (boundingBox.getSize().x - lodDivider) * (boundingBox.getSize().z - lodDivider) * 6 / lodDivider;
 	std::vector<unsigned int> indexData(indexNum);	//Reserve the memory we will use, this will optimize the code a bit
 	indexData.reserve(indexNum*2);
+	this->heightmapSize = size;
 
 	//Static. HeightmapSize holds the size of the entire heightmap and is accesible by every child
-	//(fixme) Keep this in mind when for some reason creating another QuadTree object
+	//(fixme) Keep this in mind when for some reason creating another Quadtree object
 	if(level == 0)//root
 	{
 		this->heightmapSize = size;
@@ -47,17 +52,18 @@ QuadTree::QuadTree(VBO vertecis, vec3f location, vec3f size, int level, ShaderPr
 	indexes.create(&indexData[0], indexData.size());
 	vao.addVbo(vertecis);
 	vao.addIBO(indexes);
-	//vao.setShader(shader);
+	if (shader.success) 
+		vao.setShader(shader);
 
-	if(level < maxLodLevel)
+	if(level < maxLodLevel || recur == false)
 	{
 		isLeaf = false;
 
 		vec3f childrenSize = boundingBox.getSize() / vec3f(2, 1, 2);
-		QuadTree node1(vertecis, location								, size / vec3f(2, 1, 2), level + 1, shader);
-		QuadTree node2(vertecis, location + vec3f(childrenSize.x, 0, 0), size / vec3f(2, 1, 2), level + 1, shader);
-		QuadTree node3(vertecis, location + vec3f(0, 0, childrenSize.z), size / vec3f(2, 1, 2), level + 1, shader);
-		QuadTree node4(vertecis, location + vec3f(childrenSize.x, 0, childrenSize.z), size / vec3f(2, 1, 2), level + 1, shader);
+		Quadtree node1(vertecis, location								, size / vec3f(2, 1, 2), level + 1, shader, true);
+		Quadtree node2(vertecis, location + vec3f(childrenSize.x, 0, 0), size / vec3f(2, 1, 2), level + 1, shader, true);
+		Quadtree node3(vertecis, location + vec3f(0, 0, childrenSize.z), size / vec3f(2, 1, 2), level + 1, shader, true);
+		Quadtree node4(vertecis, location + vec3f(childrenSize.x, 0, childrenSize.z), size / vec3f(2, 1, 2), level + 1, shader, true);
 
 		treeList.push_back(node1);
 		treeList.push_back(node2);
@@ -70,7 +76,67 @@ QuadTree::QuadTree(VBO vertecis, vec3f location, vec3f size, int level, ShaderPr
 	}
 }
 
-QuadTree::~QuadTree()
+std::vector<Quadtree> Quadtree::getChildren()
+{
+	return treeList;
+}
+
+void Quadtree::removeChildren()
+{
+	treeList.clear();
+}
+/*
+Quadtree::Quadtree(vec3f<float> vertecis, vec3f location, int skipNum)
+{
+
+}*/
+
+/*
+void Quadtree::addChildren(std::vector<float> vertecis, vec3f location)
+{
+	//Spec states that vectors store their data contiguously, so this is a save way to do this
+	VBO terrainVbo(&vertecis[0], vertecis.size*sizeof(GLfloat));
+	//Place a nice shader for the terrain here, placeholder for now
+	ShaderProgram shader;
+
+	vec3f childrenSize = boundingBox.getSize() / vec3f(2, 1, 2);
+	Quadtree node1(&vertecis[0], location,												size / vec3f(2, 1, 2), level + 1, shader, false);
+	Quadtree node2(&vertecis[0], location + vec3f(childrenSize.x, 0, 0),				size / vec3f(2, 1, 2), level + 1, shader, false);
+	Quadtree node3(&vertecis[0], location + vec3f(0, 0, childrenSize.z),				size / vec3f(2, 1, 2), level + 1, shader, false);
+	Quadtree node4(&vertecis[0], location + vec3f(childrenSize.x, 0, childrenSize.z),	size / vec3f(2, 1, 2), level + 1, shader, false);
+
+	treeList.push_back(node1);
+	treeList.push_back(node2);
+	treeList.push_back(node3);
+	treeList.push_back(node4);
+}*/
+
+Quadtree::Quadtree(VAO vao, vec3f location, vec3f size, int level) : vao(vao), boundingBox(location, size)
+{
+	isLeaf = true;
+}
+
+void Quadtree::addChildren(std::vector<VAO> vao)
+{
+	isLeaf = false;
+	//Place a nice shader for the terrain here, placeholder for now
+	ShaderProgram shader;
+	vec3f childrenSize = boundingBox.getSize() / vec3f(2, 1, 2);
+	vec3f location = boundingBox.getMinCorner();
+
+	Quadtree node1(vao[0], location,											childrenSize, level + 1);
+	Quadtree node2(vao[1], location + vec3f(childrenSize.x, 0, 0),				childrenSize, level + 1);		 
+	Quadtree node3(vao[2], location + vec3f(0, 0, childrenSize.z),				childrenSize, level + 1);	 
+	Quadtree node4(vao[3], location + vec3f(childrenSize.x, 0, childrenSize.z),childrenSize, level + 1);
+
+	treeList.push_back(node1);
+	treeList.push_back(node2);
+	treeList.push_back(node3);
+	treeList.push_back(node4);
+
+}
+
+Quadtree::~Quadtree()
 {
 
 }
@@ -82,7 +148,7 @@ QuadTree::~QuadTree()
 //:no?
 //	render this
 
-void QuadTree::render(vec3f location)
+void Quadtree::render(vec3f location)
 {
 	//Cube cameraBox(location, lodDistances[level]);
 	//cameraBox.render();	

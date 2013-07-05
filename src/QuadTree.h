@@ -10,23 +10,34 @@
 //extern float lodDistances[5];
 //extern int maxLodLevel;
 
-class QuadTree 
+class Quadtree
 {
+public:
+	Quadtree();
+	//depricated?
+	Quadtree(VBO vertecis, vec3f location, vec3f size, int level, ShaderProgram shader, bool recur);
+	Quadtree(VAO vao, vec3f location, vec3f size, int level);
+	//Quadtree(vec3f<float> vertecis, vec3f location, int skipNum);
+	Quadtree(std::vector<VAO> vao, vec3f location, vec3f size);
+	~Quadtree();
+	void render(vec3f location);
+	std::vector<Quadtree> getChildren();
+	void addChildren(std::vector<float> vertecis, vec3f location);
+	void addChildren(std::vector<VAO> vao); 
+	void removeChildren();
+	Cube boundingBox;
+
 private:
 	int level;
-	std::vector<QuadTree> treeList;
-	QuadTree *children[4];
-	Cube boundingBox;
+	std::vector<Quadtree> treeList;
+	//Quadtree *children[4];
 	static vec3f heightmapSize;
 	bool isLeaf;
 	float maxLodDistance;
-
+	vec3f size;
 
 	VAO vao;
-public:
-	QuadTree(VBO vertecis, vec3f location, vec3f size, int level, ShaderProgram shader);
-	~QuadTree();
-	void render(vec3f location);
+	VBO vbo;
 };
 
 #endif

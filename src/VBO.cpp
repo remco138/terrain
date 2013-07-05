@@ -4,6 +4,18 @@
 
 #include "VBO.h"
 
+BufferObject::BufferObject()
+{
+}
+/*
+BufferObject::BufferObject(GLfloat* data, int dataCount)
+{
+	create(data, dataCount);
+}*/
+
+IBO::IBO()
+{
+}
 
 GLboolean IBO::create(GLuint* data, int dataCount)
 {
@@ -14,7 +26,14 @@ GLboolean IBO::create(GLuint* data, int dataCount)
 	this->dataCount = dataCount;
 	return true;
 }
+VBO::VBO()
+{
+}
 
+VBO::VBO(GLfloat* data, int dataCount)
+{
+	create(data, dataCount);
+}
 
 GLboolean VBO::create(GLfloat* data, int dataCount)
 {
@@ -26,7 +45,6 @@ GLboolean VBO::create(GLfloat* data, int dataCount)
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	return true;
 }
-
 
 VAO::VAO()
 {
@@ -53,6 +71,7 @@ void VAO::create()
 {
 	glGenVertexArrays(1, &handle);
 }
+
 void VAO::addVbo(VBO vbo)
 {
 	//bind the VAO so opengl knows to which VBO it shall assign
@@ -60,7 +79,6 @@ void VAO::addVbo(VBO vbo)
 	//bind the VBO
 	glBindBuffer(GL_ARRAY_BUFFER, vbo.handle);
 //	glVertexPointer(3, GL_FLOAT, 0, 0);
-
 
 	//enable it so vertecis actually get passed (bindAttrib is needed to assign to a shader var)
 	glEnableVertexAttribArray(0);
@@ -105,7 +123,6 @@ void VAO::render()
 	if(shader.success)
 	{
 		glUseProgram(shader.programHandle);
-
 	}
 	if(ibo.size() != 0)
 	{

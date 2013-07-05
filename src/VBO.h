@@ -16,22 +16,27 @@ public:
 	GLint dataCount; //3 vertecis -> 3
 	GLint dataSize;	//3 vertecis -> 3*sizeof(GLfloat)
 	GLuint handle;
+	BufferObject();
+	//BufferObject(GLfloat* data, int dataCount);
 	//raw data size, meaning vertex*GLFLOAT
-	GLboolean create(GLfloat* data, int dataCount);//needs args
+	//GLboolean create(GLfloat* data, int dataCount);//needs args
 
 };
 
 class IBO : public BufferObject
 {
 public:
+	IBO();
 	GLboolean create(GLuint* data, int dataCount);
 };
 
 
 //Vertex Buffer Object: contains actual vertex data (in GPU memory): vertecis(3/4f)
-class VBO : public BufferObject //dingen!
+class VBO : public BufferObject 
 {
 public:
+	VBO();
+	VBO(GLfloat* data, int dataCount);
 	GLboolean create(GLfloat* data, int dataCount);
 };
 

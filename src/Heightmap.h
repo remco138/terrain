@@ -6,7 +6,7 @@
 
 #include "shapes/vec.h"
 #include "VBO.h"
-#include "QuadTree.h"
+#include "Quadtree.h"
 
 #include <SFML/Config.hpp>
 
@@ -17,7 +17,7 @@ public:
 	int vertexCount;
 	GLfloat* vertexData;
 	VBO vbo;
-	QuadTree* tree;
+	Quadtree* tree;
 
 	HeightMap() {};
 	bool init();
