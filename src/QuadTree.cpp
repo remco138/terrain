@@ -111,9 +111,9 @@ void Quadtree::addChildren(std::vector<float> vertecis, vec3f location)
 	treeList.push_back(node4);
 }*/
 
-Quadtree::Quadtree(VAO vao, vec3f location, vec3f size, int level) : vao(vao), boundingBox(location, size)
+Quadtree::Quadtree(VAO vao, vec3f location, vec3f size, int level) : vao(vao), boundingBox(location, size), level(level), isLeaf(true)
 {
-	isLeaf = true;
+
 }
 
 void Quadtree::addChildren(std::vector<VAO> vao)
@@ -152,7 +152,7 @@ void Quadtree::render(vec3f location)
 {
 	//Cube cameraBox(location, lodDistances[level]);
 	//cameraBox.render();	
-	if(!isLeaf && (boundingBox.getCenter() - location).length() < lodDistances[level]) //(boundingBox.contains(location) || boundingBox.contains(cameraBox) || cameraBox.contains(boundingBox)))//boundingBox.toSphere().intersects(range)*/)
+	if(level == 0 || !isLeaf && (boundingBox.getCenter() - location).length() < lodDistances[level]) //(boundingBox.contains(location) || boundingBox.contains(cameraBox) || cameraBox.contains(boundingBox)))//boundingBox.toSphere().intersects(range)*/)
 	{
 		for(int k = 0; k < 4; k++)
 		{

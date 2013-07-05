@@ -12,8 +12,15 @@ BufferObject::BufferObject(GLfloat* data, int dataCount)
 {
 	create(data, dataCount);
 }*/
+BufferObject::BufferObject(const BufferObject& copy) : data(copy.data), dataCount(copy.dataCount), dataSize(copy.dataSize), handle(copy.handle)
+{
+}
 
 IBO::IBO()
+{
+}
+
+IBO::IBO(const IBO& copy)
 {
 }
 
@@ -27,6 +34,10 @@ GLboolean IBO::create(GLuint* data, int dataCount)
 	return true;
 }
 VBO::VBO()
+{
+}
+
+VBO::VBO(const VBO& copy)
 {
 }
 
@@ -47,6 +58,10 @@ GLboolean VBO::create(GLfloat* data, int dataCount)
 }
 
 VAO::VAO()
+{
+}
+
+VAO::VAO(const VAO& copy) : BufferObject(copy), vbo(copy.vbo), ibo(copy.ibo)
 {
 }
 

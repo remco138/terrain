@@ -17,6 +17,7 @@ public:
 	GLint dataSize;	//3 vertecis -> 3*sizeof(GLfloat)
 	GLuint handle;
 	BufferObject();
+	BufferObject(const BufferObject& copy);
 	//BufferObject(GLfloat* data, int dataCount);
 	//raw data size, meaning vertex*GLFLOAT
 	//GLboolean create(GLfloat* data, int dataCount);//needs args
@@ -27,6 +28,7 @@ class IBO : public BufferObject
 {
 public:
 	IBO();
+	IBO(const IBO& copy);
 	GLboolean create(GLuint* data, int dataCount);
 };
 
@@ -36,6 +38,7 @@ class VBO : public BufferObject
 {
 public:
 	VBO();
+	VBO(const VBO& copy);
 	VBO(GLfloat* data, int dataCount);
 	GLboolean create(GLfloat* data, int dataCount);
 };
@@ -46,6 +49,7 @@ class VAO : public BufferObject
 {
 public:
 	VAO();
+	VAO(const VAO& copy);
 	~VAO();
 	void create();//perhaps a bool would be more appropriate
 	void addVbo(VBO vbo);
